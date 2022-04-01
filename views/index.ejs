@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit 2 Assessment</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Unit 2 Assessment</h1>
+    <h2>
+      Grocery List
+    </h2>
+    <% if (!groceries || groceries.length == 0) { %>
+      <p>There are no groceries yet!</p>
+    <% } else { %>
+      <ul>
+        <% for (let i = 0; i < groceries.length; i++) { %>
+          <li>
+            <form method="POST" action="/groceries/<%= i %>?_method=DELETE">
+              <label><%= groceries[i].grocery %> - <%= groceries[i].done ? 'Done' : 'Still Needed' %></label>
+              <button type="submit">DELETE</button>
+            </form>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+    <hr>
+    <form method="POST" action="/groceries">
+      <input type="text" name="grocery" />
+      <button type="submit">ADD Grocery</button>
+    </form>
+  </body>
+</html>
